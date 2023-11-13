@@ -7,8 +7,8 @@ services:
         - .:/config
         - ~/.aws:/root/.aws
     environment:
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
+      - AWS_ACCESS_KEY_ID=""
+      - AWS_SECRET_ACCESS_KEY=""
       - AWS_SESSION_TOKEN
       - AWS_DEFAULT_REGION
     ports:
@@ -17,10 +17,10 @@ services:
   app:
     build: ../../SampleApp
     environment:
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
-      - AWS_REGION=us-west-2
-      - AWS_SESSION_TOKEN
+      - AWS_ACCESS_KEY_ID=""
+      - AWS_SECRET_ACCESS_KEY=""
+      - AWS_SESSION_TOKEN=""
+      - AWS_REGION=us-east-1
       - AWS_DEFAULT_REGION
       - LISTEN_ADDRESS=0.0.0.0:8000
       - OTEL_EXPORTER_OTLP_INSECURE=True
@@ -31,15 +31,15 @@ services:
     ports:
       - '8000:8000'
 
-  validator:
-    image: public.ecr.aws/aws-otel-test/aws-otel-test-validator:alpha 
-    command: ${VALIDATOR_COMMAND}
-    depends_on:
-      - otel
-      - app
-    environment:
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
-      - AWS_REGION=us-west-2
-      - AWS_SESSION_TOKEN
-      - AWS_DEFAULT_REGION
+  # validator:
+    # image: public.ecr.aws/aws-otel-test/aws-otel-test-validator:alpha 
+    # command: ${VALIDATOR_COMMAND}
+    # depends_on:
+    #   - otel
+    #   - app
+    # environment:
+    #   - AWS_ACCESS_KEY_ID
+    #   - AWS_SECRET_ACCESS_KEY
+    #   - AWS_REGION=us-east-1
+    #   - AWS_SESSION_TOKEN
+    #   - AWS_DEFAULT_REGION

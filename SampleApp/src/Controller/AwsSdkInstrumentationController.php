@@ -5,7 +5,9 @@ use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
 
 use OpenTelemetry\API\Trace\SpanKind;
-use OpenTelemetry\API\Common\Signal\Signals;
+use OpenTelemetry\API\Common\Signal;
+use OpenTelemetry\API\Signals;
+use OpenTelemetry\API\LoggerHolder;
 
 use OpenTelemetry\Contrib\Otlp\OtlpUtil;
 use OpenTelemetry\Contrib\Otlp\SpanExporter;
@@ -24,7 +26,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-\OpenTelemetry\API\Common\Log\LoggerHolder::set(new \Monolog\Logger('grpc', [new \Monolog\Handler\StreamHandler('php://stderr')]));
+// \OpenTelemetry\API\Common\Log\LoggerHolder::set(new \Monolog\Logger('grpc', [new \Monolog\Handler\StreamHandler('php://stderr')]));
 
 class AwsSdkInstrumentationController
 {
@@ -171,7 +173,7 @@ class AwsSdkInstrumentationController
 
         // Initialize all AWS Client instances
         $s3Client = new S3Client([
-            'region' => 'us-west-2',
+            'region' => 'us-east-1',
             'version' => '2006-03-01'
         ]);
 

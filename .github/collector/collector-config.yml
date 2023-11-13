@@ -8,9 +8,9 @@ exporters:
   logging:
     loglevel: info
   awsxray:
-    region: us-west-2
+    region: us-east-1
   awsemf:
-    region: us-west-2
+    region: us-east-1
 
 service:
   telemetry:

@@ -1,5 +1,36 @@
 # AWS Distro for OpenTelemetry PHP
 
+Forked from: https://github.com/aws-observability/aws-otel-php
+
+## How to use:
+
+
+
+1 - Replace credentials in docker-compose 
+
+```
+# - AWS_ACCESS_KEY_ID=
+# - AWS_SECRET_ACCESS_KEY=
+```
+
+- "otel" credentials must have *AWSXRayDaemonWriteAccess* permissions
+
+- "app" credentials must have *S3:listBuckets* permissions in order to test the /aws-sdk-call route (optional)
+
+2 - Run docker-compose
+
+```
+cd .github/collector
+docker-compose -f ./docker-compose.yml up
+```
+
+3 - Make request to ```/outgoing-http-call```
+
+4 - Read Traces at: https://us-east-1.console.aws.amazon.com/cloudwatch/home#xray:service-map/map
+
+
+---
+
 This repository contains documentation and sample apps for the AWS Distro for OpenTelemetry in PHP. It provides the AWS service integrations for traces for the [OpenTelemetry PHP](https://github.com/open-telemetry/opentelemetry-php) library. The library can be configured to support trace applications with the AWS X-Ray service. 
 
 Please note all source code for the OpenTelemetry PHP library is upstream on the OpenTelemetry project in the OpenTelemetry PHP library repo. All features of the OpenTelemetry library are available along with its components being configured to create traces which can be viewed in the AWS X-Ray console and to allow propagation of those contexts across multiple downstream AWS services.
